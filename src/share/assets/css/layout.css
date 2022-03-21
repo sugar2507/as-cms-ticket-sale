@@ -57,6 +57,24 @@
       padding: 0px 25px 0px 25px;
   }
 
+  .ant-table-thead > tr > th, .ant-table-tbody > tr > td{
+    position: inherit !important;
+    padding: 10px 10px !important;
+    overflow-wrap: break-word;
+  }
+
+  .ant-table-thead > tr > th {
+    background: #F1F4F8 !important;
+  }
+
+  .ant-table-thead > tr{
+    border-radius: 8px 8px 0px 0px !important;
+  }
+
+  .ant-table-tbody tr:nth-child(2n) {
+    background-color: #F7F8FB;
+ }
+
 
   .top-right{
     display: flex;
@@ -92,6 +110,12 @@
   font-weight: 700;
   font-size: 36px;
   line-height: 54px;
+}
+
+.title-24px{
+  font-weight: 700;
+font-size: 24px;
+line-height: 30px;
 }
 .title-16px{
   font-weight: 600;
@@ -130,7 +154,118 @@ opacity: 0.5;
 }
 .title-footer{
   font-weight: 400;
-  font-size: 14px;
+  font-size: 12px !important;
   line-height: 22px;
   opacity: 0.5;
 }
+
+.ant-picker-focused {
+  border-color: #ff7500 !important;
+  box-shadow: 0 0 0 2px rgb(255 162 24 / 48%) !important;
+}
+
+.ant-picker:hover {
+  border: 1px solid #ff7500 !important;
+}
+
+.ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner{
+  color: #fff;
+background: #FFBA7B !important;
+  border-radius: 50%;
+}
+
+.ant-picker-suffix , .ant-picker-clear{
+  color: #FF993C !important;
+}
+
+.ant-picker-panel-container{
+  border-radius: 20px !important;
+}
+
+.ant-popover-arrow{
+  width: 0px !important;
+}
+
+.ant-popover-inner{
+  border-radius: 15px !important;
+}
+.ant-pagination-item-active{
+  border-radius: 5px !important;
+  border-color: #ff993c !important;
+}
+
+.ant-pagination-item-active a{
+  color: #ff993c !important;
+} 
+
+.ant-popover-title{
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 30px;
+  text-align: center !important;
+  padding: 15px 31px 10px !important;
+  border-bottom: 0px solid #f0f0f0 !important;
+}
+
+.date-filter{
+  display: flex;
+  justify-content: space-between;
+}
+
+.title-date-filter{
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 26px;
+  opacity: 0.7;
+}
+
+.title-status-filter , .title-gate-filter{
+  padding-top: 15px;
+  font-weight: 600;
+font-size: 15px;
+line-height: 26px;
+opacity: 0.8;
+}
+
+.gate-filter{
+  padding-bottom: 10px;
+  max-width: 400px;
+  min-width: 400px;
+}
+
+
+.ant-checkbox-wrapper + .ant-checkbox-wrapper {
+  margin-left: 0px !important;
+}
+
+.search-input-1 {
+  width: 100%;
+  padding: 10px 16px;
+  background: #F7F7F8;
+  font-size: 14px;
+  line-height: 18px;
+  color: #575756;
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 25px 25px;
+  background-position: 95% center;
+  border-radius: 12px;
+  border: 0px;
+  transition: all 250ms ease-in-out;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+.ant-select:not(.ant-select-customize-input) .ant-select-selector{
+  background-color: #F1F4F8 !important;
+    border: 0px solid #d9d9d9 !important;
+    border-radius: 5px !important;
+}
+
+.ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector{
+  box-shadow: 0 0 0 2px rgba(255, 163, 24, 0.2) !important;
+}
+
+.ant-select-arrow{
+  color: rgb(255 153 60) !important;
+}
+

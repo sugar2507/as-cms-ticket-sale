@@ -14,8 +14,10 @@ import {
   Link
 } from "react-router-dom";
 import Home from "../../pages/home/Home";
+import CheckTicket from "../../pages/checkticket/CheckTicket";
+import Product from "../../pages/product/Product";
 
-const { Content, Footer, Sider } = Layout;
+const { Footer, Sider } = Layout;
 
 export const LayOut = () => {
   return (
@@ -33,7 +35,12 @@ export const LayOut = () => {
             }}
           >
             <div className="logo" />
-            <Menu style={{height:650}} theme="dark" mode="inline" defaultSelectedKeys={["4"]}>
+            <Menu
+              style={{ height:575,width: 250 }}
+              theme="dark"
+              mode="inline"
+              defaultSelectedKeys={["4"]}
+            >
               <Menu.Item key="1" icon={<HomeOutlined />}>
                 Trang chủ<Link to="/"></Link>
               </Menu.Item>
@@ -43,29 +50,26 @@ export const LayOut = () => {
               </Menu.Item>
 
               <Menu.Item key="3" icon={<FaFileInvoice />}>
-                Đổi soát vé<Link to="/TicketExchange"></Link>
+                Đối soát vé<Link to="/CheckTicket"></Link>
               </Menu.Item>
 
               <Menu.Item key="4" icon={<SettingOutlined />}>
-                Cài đặt
+                Cài đặt<Link to="/Product"></Link>
               </Menu.Item>
             </Menu>
-            <Footer className="title-footer">Copyright 2020 Alta Software</Footer>
+            <Footer className="title-footer">
+              Copyright 2020 Alta Software
+            </Footer>
           </Sider>
 
-          <Layout>
+          <Layout style={{ paddingLeft: 50 }}>
             <Header />
-            <Content style={{ margin: "15px 15px 15px 0" }}>
-              <div
-                className="site-layout-background"
-                style={{ padding: 24, minHeight: 360, borderRadius: 24 }}
-              >
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/ManagerTicket" element={<Ticket />} />
-                </Routes>
-              </div>
-            </Content>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/ManagerTicket" element={<Ticket />} />
+              <Route path="/CheckTicket" element={<CheckTicket />} />
+              <Route path="/Product" element={<Product/>} />
+            </Routes>
           </Layout>
         </Layout>
       </Router>

@@ -1,139 +1,135 @@
 import React from 'react'
-import { Button, Table , Tag} from 'antd';
-import '../ticket-m/ticket.css';
+import { Button, Table , Tag, Layout} from 'antd';
+import FilterTicket from '../../share/component/filterticket/FilterTicket';
 
-
-import {
-  FilterOutlined
-} from "@ant-design/icons";
+const { Content} = Layout;
 
 const columns = [
-    {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-    },
-    {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age',
-    },
-    {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
-    },
-    {
-      title: 'Tags',
-      key: 'tags',
-      dataIndex: 'tags',
-      render: (tags: any[]) => (
-        <>
-          {tags.map(tag => {
-            let color = tag.length > 5 ? 'geekblue' : 'green';
-            if (tag === 'loser') {
-              color = 'volcano';
-            }
-            return (
-              <Tag color={color} key={tag}>
-                {tag.toUpperCase()}
-              </Tag>
-            );
-          })}
-        </>
-      ),
-    },
-  ];
+  {
+    title: "Booking code",
+    dataIndex: "bookingcode",
+    key: "bookingcode",
+  },
+  {
+    title: "Số vé",
+    dataIndex: "idticket",
+    key: "idticket",
+  },
+  {
+    title: "Tên sự kiện",
+    dataIndex: "nameevent",
+    key: "nameevent",
+  },
+  
+  {
+    title: "Tình trạng sử dụng",
+    key: "tags",
+    dataIndex: "tags",
+    render: (tags: any[]) => (
+      <>
+        {tags.map((tag) => {
+          let color = "green";
+          if (tag === "Hết hạn") {
+            color = "volcano";
+          }
+          else if (tag === "Chưa sử dụng") {
+            color = "green";
+          }
+          else if (tag === "Đã sử dụng") {
+            color = "blue";
+          }
+          return (
+            <Tag color={color} key={tag}>
+              {tag.toUpperCase()}
+            </Tag>
+          );
+        })}
+      </>
+    ),
+  },
+  {
+    title: "Ngày sử dụng",
+    dataIndex: "dateuse",
+    key: "dateuse",
+  },
+  {
+    title: "Ngày xuất vé",
+    dataIndex: "exportdate",
+    key: "exportdate",
+  },
+  {
+    title: "Cổng check - in",
+    dataIndex: "gate",
+    key: "gate",
+  },
+];
   
   const data = [
     {
-      key: '1',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park',
-      tags: ['nice', 'developer'],
+      key: "1",
+      bookingcode: "ALT20210501",
+      idticket: 123456789034,
+      nameevent: "Hội chợ triển lãm tiêu dùng 2021",
+      tags: ["Chưa sử dụng"],
+      dateuse: "14/04/2021",
+      exportdate: "14/04/2021",
+      gate: "Cổng 1",
     },
     {
-      key: '2',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park',
-      tags: ['loser'],
+      key: "2",
+      bookingcode: "ALT20210501",
+      idticket: 123456789034,
+      nameevent: "Hội chợ triển lãm tiêu dùng 2021",
+      tags: ["Hết hạn"],
+      dateuse: "14/04/2021",
+      exportdate: "14/04/2021",
+      gate: "Cổng 1",
     },
     {
-      key: '3',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park',
-      tags: ['cool', 'teacher'],
+      key: "3",
+      bookingcode: "ALT20210501",
+      idticket: 123456789034,
+      nameevent: "Hội chợ triển lãm tiêu dùng 2021",
+      tags: ["Đã sử dụng"],
+      dateuse: "14/04/2021",
+      exportdate: "14/04/2021",
+      gate: "Cổng 1",
     },
-    {
-        key: '4',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sidney No. 1 Lake Park',
-        tags: ['cool', 'teacher'],
-      },
-      {
-        key: '5',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sidney No. 1 Lake Park',
-        tags: ['cool', 'teacher'],
-      },
-      {
-        key: '6',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sidney No. 1 Lake Park',
-        tags: ['cool', 'teacher'],
-      },
-      {
-        key: '7',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sidney No. 1 Lake Park',
-        tags: ['cool', 'teacher'],
-      },
   ];
 
 
 const Ticket = () => {
+  
   return (
     <div>
-      <div className='title'>Danh sách vé</div>
-      <div className='search-button'>
+      <Content style={{ margin: "15px 15px 15px 0" }}>
+        <div
+          className="site-layout-background"
+          style={{ padding: 24, minHeight: 645, borderRadius: 24 }}
+        >
+      <div className="title">Danh sách vé</div>
+      <div className="search-button">
         <div style={{ padding: "32px 0 32px 0", width: 446 }}>
           <input className="search-input-1" placeholder="Tìm bảng số vé" />
         </div>
 
         <div className="button-right">
-          <Button
-            style={{
-              borderRadius: 8,
-              color: "#FF993C",
-              fontWeight: 500,
-              fontSize: 15,
-              borderColor: "#FF993C",
-            }}
-            icon={<FilterOutlined />}
-          >
-            Lọc Vé
-          </Button>
-            <div style={{paddingLeft:10}}>
-            <Button
-            style={{
-              borderRadius: 8,
-              color: "#FF993C",
-              fontWeight: 500,
-              fontSize: 15,
-              borderColor: "#FF993C",
-            }}
-          >
-            Xuất file(.csv)
-          </Button>
-            </div>
           
+          <FilterTicket/>
+
+          <div style={{ paddingLeft: 10 }}>
+            <Button
+              style={{
+                borderRadius: 8,
+                color: "#FF993C",
+                fontWeight: 500,
+                fontSize: 15,
+                borderColor: "#FF993C",
+              }}
+            >
+              Xuất file(.csv)
+            </Button>
+          </div>
         </div>
       </div>
       <Table
@@ -141,6 +137,8 @@ const Ticket = () => {
         columns={columns}
         dataSource={data}
       ></Table>
+      </div>
+      </Content>
     </div>
   );
 }
