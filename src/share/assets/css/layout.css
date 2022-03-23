@@ -269,3 +269,45 @@ opacity: 0.8;
   color: rgb(255 153 60) !important;
 }
 
+.ant-modal-title {
+  text-align: center !important;
+  font-weight: 700 !important;
+  font-size: 24px !important;
+  line-height: 30px !important;
+}
+
+.ant-modal-header {
+  border-bottom: 0px solid #f0f0f0 !important;
+}
+.title-table-modal{
+  font-weight: 600;
+font-size: 16px;
+line-height: 26px;
+  padding-right: 60px;
+}
+
+.title-modal{
+  padding-bottom: 15px;
+}
+
+.ant-modal-footer {
+  text-align: center !important;
+  border-top: 0px solid #f0f0f0 !important;
+}
+
+.ant-btn-default{
+  border-radius: 8px !important;
+    color: rgb(255, 153, 60) !important;
+    font-weight: 500 !important;
+    font-size: 15px !important;
+    border-color: rgb(255, 153, 60) !important;
+}
+
+.ant-btn-primary{
+  background-color: rgb(255, 153, 60) !important;
+    border-radius: 8px !important;
+    color: rgb(255, 255, 255) !important;
+    font-weight: 500 !important;
+    font-size: 15px !important;
+    border-color: rgb(255, 153, 60) !important;
+}

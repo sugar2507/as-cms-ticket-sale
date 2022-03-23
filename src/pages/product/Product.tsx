@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
-import { FormOutlined} from '@ant-design/icons';
-import { Button, Table , Tag, Layout , Space} from 'antd';
+import { Button, Table , Tag, Layout} from 'antd';
+import UpdateProd from '../../share/component/updateprod/UpdateProd';
+import CreateProd from '../../share/component/createprod/CreateProd';
 
 const { Content} = Layout;
 
@@ -64,9 +65,7 @@ const { Content} = Layout;
       title: '',
       key: 'action',
       render: (text: any, record: any) => (
-        <Space size="middle">
-          <a style={{color:'#FF993C'}}> <FormOutlined style={{fontSize:16,paddingRight:5}} />Cập nhật</a>
-        </Space>
+        <UpdateProd/>
       ),
     },
     ];
@@ -126,19 +125,7 @@ const Product = () => {
               </div>
 
               <div  style={{ paddingLeft: 10 }}>
-                <Button
-                  type="primary"
-                  style={{
-                    backgroundColor: "#FF993C",
-                    borderRadius: 8,
-                    color: "#FFFFFF",
-                    fontWeight: 500,
-                    fontSize: 15,
-                    borderColor: "#FF993C",
-                  }}
-                >
-                  Chốt đối soát
-                </Button>
+                <CreateProd/>
               </div>
 
             </div>

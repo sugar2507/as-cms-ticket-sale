@@ -1,8 +1,11 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
 import { Button, Table , Tag, Layout} from 'antd';
 import FilterTicket from '../../share/component/filterticket/FilterTicket';
+import Ellipsis from '../../share/component/ellipsis/Ellipsis';
 
 const { Content} = Layout;
+
 
 const columns = [
   {
@@ -62,6 +65,13 @@ const columns = [
     dataIndex: "gate",
     key: "gate",
   },
+  {
+    title: '',
+    key: 'action',
+    render: (text: any, record: any) => (
+      <Ellipsis/>
+    ),
+  },
 ];
   
   const data = [
@@ -100,6 +110,7 @@ const columns = [
 
 const Ticket = () => {
   
+
   return (
     <div>
       <Content style={{ margin: "15px 15px 15px 0" }}>
