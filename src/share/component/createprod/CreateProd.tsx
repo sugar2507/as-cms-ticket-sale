@@ -139,7 +139,7 @@ const CreateProd = () => {
               />{" "}
               /{" "}
               <Input
-                placeholder="Giá vé"
+                placeholder="Số vé"
                 style={{ minWidth: 80, maxWidth: 80, borderRadius: 5 }}
                 disabled
               />{" "}
