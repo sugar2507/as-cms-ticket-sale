@@ -53,10 +53,10 @@ const ContentFilter = () => {
           <p className="title-status-filter">Tình trạng sử dụng</p>
           <div>
             <Radio.Group onChange={onChange} value={value}>
-              <Radio value={1}>Tất cả</Radio>
-              <Radio value={2}>Đã sử dụng</Radio>
-              <Radio value={3}>Chưa sử dụng</Radio>
-              <Radio value={4}>Hết hạn</Radio>
+              <Radio value={1} key="1">Tất cả</Radio>
+              <Radio value={2} key="2">Đã sử dụng</Radio>
+              <Radio value={3} key="3">Chưa sử dụng</Radio>
+              <Radio value={4} key="4">Hết hạn</Radio>
             </Radio.Group>
           </div>
         </div>

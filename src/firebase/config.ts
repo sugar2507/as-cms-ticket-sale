@@ -1,3 +1,4 @@
+
 export const config={
     firebaseConfig: {
         apiKey: "AIzaSyCOnchoUlnszzFddjSjdLemP1ecizLo9BY",

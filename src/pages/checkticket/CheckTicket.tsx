@@ -74,6 +74,62 @@ const columns = [
         tickettype: "Vé cổng",
         gate: "Cổng 1",
       },
+      {
+        key: "4",
+        idticket: 123456789034,
+        nameevent: "Hội chợ triển lãm tiêu dùng 2021",
+        dateuse: "14/04/2021",
+        tickettype: "Vé cổng",
+        gate: "Cổng 1",
+      },
+      {
+        key: "5",
+        idticket: 123456789034,
+        nameevent: "Hội chợ triển lãm tiêu dùng 2021",
+        dateuse: "14/04/2021",
+        tickettype: "Vé cổng",
+        gate: "Cổng 1",
+      },
+      {
+        key: "6",
+        idticket: 123456789034,
+        nameevent: "Hội chợ triển lãm tiêu dùng 2021",
+        dateuse: "14/04/2021",
+        tickettype: "Vé cổng",
+        gate: "Cổng 1",
+      },
+      {
+        key: "7",
+        idticket: 123456789034,
+        nameevent: "Hội chợ triển lãm tiêu dùng 2021",
+        dateuse: "14/04/2021",
+        tickettype: "Vé cổng",
+        gate: "Cổng 1",
+      },
+      {
+        key: "8",
+        idticket: 123456789034,
+        nameevent: "Hội chợ triển lãm tiêu dùng 2021",
+        dateuse: "14/04/2021",
+        tickettype: "Vé cổng",
+        gate: "Cổng 1",
+      },
+      {
+        key: "9",
+        idticket: 123456789034,
+        nameevent: "Hội chợ triển lãm tiêu dùng 2021",
+        dateuse: "14/04/2021",
+        tickettype: "Vé cổng",
+        gate: "Cổng 1",
+      },
+      {
+        key: "10",
+        idticket: 123456789034,
+        nameevent: "Hội chợ triển lãm tiêu dùng 2021",
+        dateuse: "14/04/2021",
+        tickettype: "Vé cổng",
+        gate: "Cổng 1",
+      },
     ];
 
 const CheckTicket = () => {
@@ -126,7 +182,7 @@ const CheckTicket = () => {
               </div>
             </div>
             <Table
-              pagination={{ position: ["bottomCenter"], size: "small" }}
+              pagination={{ pageSize:8, position: ["bottomCenter"], size: "small" }}
               columns={columns}
               dataSource={data}
             ></Table>

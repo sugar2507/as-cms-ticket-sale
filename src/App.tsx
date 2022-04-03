@@ -8,7 +8,7 @@ import { config } from './firebase/config';
 
 const app = initializeApp(config.firebaseConfig);
 
-getFirestore(app);
+export const db = getFirestore(app);
 
 function App() {
   return (
