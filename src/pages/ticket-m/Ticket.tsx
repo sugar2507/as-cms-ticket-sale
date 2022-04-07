@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
-import { Button, Table, Tag, Layout, Input } from "antd";
+import { Button, Table, Tag, Layout} from "antd";
 import FilterTicket from "../../share/component/filterticket/FilterTicket";
 import Ellipsis from "../../share/component/ellipsis/Ellipsis";
 

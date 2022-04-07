@@ -1,100 +1,24 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react'
-import { Button, Table , Tag, Layout} from 'antd';
-import UpdateProd from '../../share/component/updateprod/UpdateProd';
-import CreateProd from '../../share/component/createprod/CreateProd';
+import { Button, Table, Tag, Layout } from "antd";
+import UpdateProd from "../../share/component/updateprod/UpdateProd";
+import CreateProd from "../../share/component/createprod/CreateProd";
+import { useState, useEffect } from "react";
+import coursehelper, { ICourseDoc } from "../../firebase/coursehelper";
 
-const { Content} = Layout;
-
-    const columns = [
-    {
-        title: "Mã gói",
-        dataIndex: "magoi",
-        key: "magoi",
-    },
-    {
-        title: "Tên gói vé",
-        dataIndex: "tengoive",
-        key: "tengoive",
-    },
-    
-    {
-        title: "Ngày áp dụng",
-        dataIndex: "dateuse",
-        key: "dateuse",
-    },
-    {
-        title: "Ngày hết hạn",
-        dataIndex: "expiresdate",
-        key: "expiresdate",
-    },
-    {
-        title: "Giá vé (VNĐ/Vé)",
-        dataIndex: "price",
-        key: "price",
-    },
-    {
-        title: "Giá Combo (VNĐ/Combo)",
-        dataIndex: "pricecombo",
-        key: "pricecombo",
-    },
-    {
-        title: "Tình trạng",
-        key: "tags",
-        dataIndex: "tags",
-        render: (tags: any[]) => (
-        <>
-            {tags.map((tag) => {
-            let color = "green";
-            if (tag === "Tắt") {
-                color = "volcano";
-            }
-            else if (tag === "Đang áp dụng") {
-                color = "green";
-            }
-            return (
-                <Tag color={color} key={tag}>
-                {tag.toUpperCase()}
-                </Tag>
-            );
-            })}
-        </>
-        ),
-    },
-    {
-      title: '',
-      key: 'action',
-      render: (text: any, record: any) => (
-        <UpdateProd/>
-      ),
-    },
-    ];
-  
-    const data = [
-        {
-        key: "1",
-        magoi: "ALT20210501",
-        tengoive: 'Gói gia đình',
-        dateuse: "14/04/2021 08:00:00",
-        expiresdate: "14/04/2021 23:00:00",
-        price: "90.000 VNĐ",
-        pricecombo: "360.000 VNĐ/4 Vé",
-        tags: ["Đang áp dụng"],
-        },
-        {
-          key: "2",
-          magoi: "ALT20210501",
-          tengoive: 'Gói sự kiện',
-          dateuse: "14/04/2021 08:00:00",
-          expiresdate: "14/04/2021 23:00:00",
-          price: "20.000 VNĐ",
-          pricecombo: "",
-          tags: ["Tắt"],
-          },
-    ];
-
+const { Content } = Layout;
 
 const Product = () => {
+  const [ticketpackage, setCourses] = useState<ICourseDoc[]>([]);
+
+  const fetchCourses = async () => {
+    const ticketpackage = await coursehelper.getCourses();
+    setCourses(ticketpackage);
+  };
+
+  useEffect(() => {
+    fetchCourses();
+  }, []);
+
   return (
     <div>
       <Content style={{ margin: "15px 15px 15px 0" }}>
@@ -109,7 +33,6 @@ const Product = () => {
             </div>
 
             <div className="button-right">
-
               <div>
                 <Button
                   style={{
@@ -123,22 +46,56 @@ const Product = () => {
                   Xuất file(.csv)
                 </Button>
               </div>
-
-              <div  style={{ paddingLeft: 10 }}>
-                <CreateProd/>
+              <div style={{ paddingLeft: 10 }}>
+                <CreateProd />
               </div>
-
             </div>
           </div>
-          <Table
-            pagination={{ position: ["bottomCenter"], size: "small" }}
-            columns={columns}
-            dataSource={data}
-          ></Table>
+          <table className="setting__table">
+            <thead>
+              <tr>
+                <th>Mã gói vé</th>
+                <th>Tên gói vé</th>
+                <th>Ngày áp dụng</th>
+                <th>Ngày hết hạn</th>
+                <th>Giá vé (VNĐ/Vé)</th>
+                <th>Tình trạng</th>
+                <th></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {ticketpackage.map((course) => (
+                <tr key={course.id}>
+                  <td>ALT20210501</td>
+                  <td>{course.name}</td>
+                  <td>{course.datestart}</td>
+                  <td>{course.dateend}</td>
+                  <td>{course.price}</td>
+                  <td>
+                    <Tag
+                      color={
+                        course.status === "Tắt"
+                          ? "red"
+                          : course.status === "Đang áp dụng"
+                          ? "green"
+                          : "red"
+                      }
+                    >
+                      {course.status}
+                    </Tag>
+                  </td>
+                  <td>
+                    <UpdateProd />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </Content>
     </div>
   );
-}
+};
 
-export default Product
+export default Product;

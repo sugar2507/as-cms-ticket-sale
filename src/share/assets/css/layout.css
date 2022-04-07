@@ -311,3 +311,46 @@ line-height: 26px;
     font-size: 15px !important;
     border-color: rgb(255, 153, 60) !important;
 }
+
+.setting__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.setting__table thead {
+  background: #f1f4f8;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 26px;
+  height: 48px;
+  color: #1e0d03;
+}
+.setting__table th {
+  border: none;
+  padding: 0 10px;
+  text-align: start;
+}
+.setting__table th:nth-child(1) {
+  text-align: center;
+}
+.setting__table tr {
+  height: 48px;
+}
+.setting__table td {
+  border: none;
+  padding: 0 10px;
+}
+.setting__table td:nth-child(1) {
+  text-align: center;
+}
+.setting__table td:nth-child(9) {
+  cursor: pointer;
+  color: #ff993c;
+}
+.setting__table td:nth-child(9) div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.setting__table td:nth-child(9) img {
+  padding-right: 8px;
+}

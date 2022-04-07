@@ -1,31 +1,41 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from 'react'
-import { Modal,DatePicker ,Input,TimePicker , Checkbox,Cascader,Button} from "antd";
+import React, { useState } from "react";
+import {
+  Modal,
+  DatePicker,
+  Input,
+  TimePicker,
+  Checkbox,
+  Cascader,
+  Button,
+} from "antd";
 
-import moment from 'moment';
+import { Formik } from "formik";
+
+import moment from "moment";
 const options = [
-    {
-      value: "Đang áp dụng",
-      label: "Đang áp dụng",
-    },
-    {
-      value: "Tắt",
-      label: "Tắt",
-    },
-  ];
-  
-  function onChangeTinhTrang(value: any) {
-      console.log(value);
-    }
+  {
+    value: "Đang áp dụng",
+    label: "Đang áp dụng",
+  },
+  {
+    value: "Tắt",
+    label: "Tắt",
+  },
+];
 
-function onChange(e: { target: { checked: any; }; }) {
-    console.log(`checked = ${e.target.checked}`);
-  }
+function onChangeTinhTrang(value: any) {
+  console.log(value);
+}
 
-const dateFormat = 'DD/MM/YYYY';
+function onChange(e: { target: { checked: any } }) {
+  console.log(`checked = ${e.target.checked}`);
+}
+
+const dateFormat = "DD/MM/YYYY";
 
 const CreateProd = () => {
-    const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -72,7 +82,7 @@ const CreateProd = () => {
           />
         </div>
 
-        <table >
+        <table>
           <tbody>
             <tr>
               <td style={{ paddingRight: 60 }} className="title-modal">
@@ -124,7 +134,6 @@ const CreateProd = () => {
               <Input
                 placeholder="Giá vé"
                 style={{ minWidth: 80, maxWidth: 80, borderRadius: 5 }}
-                disabled
               />{" "}
               / vé
             </Checkbox>
@@ -161,6 +170,6 @@ const CreateProd = () => {
       </Modal>
     </div>
   );
-}
+};
 
-export default CreateProd
+export default CreateProd;
