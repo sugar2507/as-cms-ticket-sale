@@ -1,9 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { Button, Table, Tag, Layout } from "antd";
+import { Button, Tag, Layout } from "antd";
 import UpdateProd from "../../share/component/updateprod/UpdateProd";
 import CreateProd from "../../share/component/createprod/CreateProd";
 import { useState, useEffect } from "react";
 import coursehelper, { ICourseDoc } from "../../firebase/coursehelper";
+import * as XLSX from "xlsx";
 
 const { Content } = Layout;
 
@@ -18,6 +19,15 @@ const Product = () => {
   useEffect(() => {
     fetchCourses();
   }, []);
+
+  const FileCSV = ()=>{
+    var wb = XLSX.utils.book_new(),
+    ws = XLSX.utils.json_to_sheet(ticketpackage);
+
+    XLSX.utils.book_append_sheet(wb,ws,"MySheet1");
+    XLSX.writeFile(wb,"MyExcel.xlsx");
+  }
+
 
   return (
     <div>
@@ -35,6 +45,7 @@ const Product = () => {
             <div className="button-right">
               <div>
                 <Button
+                onClick={FileCSV}
                   style={{
                     borderRadius: 8,
                     color: "#FF993C",
@@ -47,7 +58,7 @@ const Product = () => {
                 </Button>
               </div>
               <div style={{ paddingLeft: 10 }}>
-                <CreateProd />
+                <CreateProd fetchCourses={fetchCourses}/>
               </div>
             </div>
           </div>

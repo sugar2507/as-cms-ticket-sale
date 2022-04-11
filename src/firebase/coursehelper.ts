@@ -24,6 +24,10 @@ class CourseHelperClass{
             return { ...doc.data(), id: doc.id } as ICourseDoc;
           });
     }
+
+    addCourse = async (course: ICourse) => {
+        return addDoc(courseCollectionRef, course);
+      };
 }
 
 export default new CourseHelperClass();
