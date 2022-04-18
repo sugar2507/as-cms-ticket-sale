@@ -58,7 +58,7 @@ const Product = () => {
                 </Button>
               </div>
               <div style={{ paddingLeft: 10 }}>
-                <CreateProd fetchCourses={fetchCourses}/>
+                <CreateProd/>
               </div>
             </div>
           </div>

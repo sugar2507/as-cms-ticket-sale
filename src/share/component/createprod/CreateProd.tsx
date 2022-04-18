@@ -6,49 +6,40 @@ import {
   Input,
   TimePicker,
   Checkbox,
-  Cascader,
+  Select,
   Button,
   Form,
 } from "antd";
 
-import { Formik } from "formik";
-
 import moment from "moment";
 import coursehelper from "../../../firebase/coursehelper";
-const options = [
-  {
-    value: "Đang áp dụng",
-    label: "Đang áp dụng",
-  },
-  {
-    value: "Tắt",
-    label: "Tắt",
-  },
-];
 
-interface IAddCourseProps {
-  fetchCourses: () => void;
-}
+const { Option } = Select;
 
-function onChangeTinhTrang(value: any) {
-  console.log(value);
-}
+const dateFormat = "DD/MM/YYYY HH:mm:ss";
 
-function onChange(e: { target: { checked: any } }) {
-  console.log(`checked = ${e.target.checked}`);
-}
 
-const dateFormat = "DD/MM/YYYY";
+const CreateProd = () => {
+  const [form] = Form.useForm();
 
-const CreateProd: FC<IAddCourseProps> = ({ fetchCourses }) => {
+  const onCreate = (values: any) => {
+    console.log("Received values of form: ", values);
+    setIsModalVisible(false);
+  };
+
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
 
   const showModal = () => {
     setIsModalVisible(true);
   };
-  const handleCancel = () => {
+  const onCancel = () => {
     setIsModalVisible(false);
+  };
+
+  const [setShowInput, setShowInput1] = useState(false);
+
+  const showInput1 = () => {
+    setShowInput1(true);
   };
   return (
     <div>
@@ -70,149 +61,117 @@ const CreateProd: FC<IAddCourseProps> = ({ fetchCourses }) => {
         style={{ minWidth: 700 }}
         title="Thêm gói vé"
         visible={isModalVisible}
-        okText="Lưu"
-        onCancel={handleCancel}
-        cancelText="Hủy"
+        okText="Luu"
+        cancelText="Huy"
+        onOk={() => {
+          form
+            .validateFields()
+            .then((values) => {
+              form.resetFields();
+              onCreate(values);
+            })
+            .catch((info) => {
+              console.log("Validate Failed:", info);
+            });
+        }}
+        onCancel={onCancel}
         closable={false}
       >
-        <Formik
-          initialValues={{
-            name: "",
-            price: "",
-            datestart: "",
-            dateend: "",
-            status: "",
-          }}
-          onSubmit={async (values) => {
-            console.log(values);
-            try {
-              setIsLoading(true);
-              await coursehelper.addCourse({
-                name: values.name,
-                price: parseInt(values.price),
-                status: values.status,
-                datestart: values.datestart,
-                dateend: values.dateend,
-              });
-            } catch (error) {
-              console.log(error);
-              alert(error);
-            } finally {
-              setIsLoading(false);
-              fetchCourses();
-              handleCancel();
-            }
-          }}
-        >
-          <Form>
-            <div style={{ paddingBottom: 10 }}>
-              <p className="title-16px">Tên gói vé</p>
-              <Form.Item name="name">
-                <Input
-                  style={{ borderRadius: 7, minWidth: 400, maxWidth: 400 }}
-                  placeholder="Tên gói vé"
-                />
-              </Form.Item>
-            </div>
+        <Form form={form} name="themgoive" scrollToFirstError>
+          <p className="title-16px">Tên gói vé</p>
+          <Form.Item name="name">
+            <Input
+              style={{ borderRadius: 7, minWidth: 400, maxWidth: 400 }}
+              placeholder="Tên gói vé"
+            />
+          </Form.Item>
 
-            <table>
-              <tbody>
-                <tr>
-                  <td style={{ paddingRight: 60 }} className="title-modal">
-                    <p className="title-16px">Ngày áp dụng</p>
-                    <div style={{ display: "flex" }}>
-                      <div style={{ paddingRight: 10 }}>
-                        <Form.Item name="datestart">
-                          <DatePicker
-                            style={{ borderRadius: 5 }}
-                            placeholder="Chọn ngày"
-                            defaultValue={moment("01/01/2015", dateFormat)}
-                            format={dateFormat}
-                            showToday={false}
-                          />
-                        </Form.Item>
-                      </div>
-
-                      <TimePicker
-                        style={{ borderRadius: 5 }}
-                        placeholder="Chọn giờ"
-                      />
+          <table>
+            <tbody>
+              <tr>
+                <td style={{ paddingRight: 60 }} className="title-modal">
+                  <p className="title-16px">Ngày áp dụng</p>
+                  <div style={{ display: "flex" }}>
+                    <div style={{ paddingRight: 10 }}>
+                      <Form.Item name="datestart">
+                        <DatePicker
+                          style={{ borderRadius: 5 }}
+                          placeholder="Chọn ngày"
+                          format={dateFormat}
+                          showTime
+                          showToday={false}
+                        />
+                      </Form.Item>
                     </div>
-                  </td>
-                  <td className="title-modal">
-                    <p className="title-16px">Ngày hết hạn</p>
-                    <div style={{ display: "flex" }}>
-                      <div style={{ paddingRight: 10 }}>
-                        <Form.Item name="dateend">
-                          <DatePicker
-                            style={{ borderRadius: 5 }}
-                            placeholder="Chọn ngày"
-                            defaultValue={moment("01/01/2015", dateFormat)}
-                            format={dateFormat}
-                            showToday={false}
-                          />
-                        </Form.Item>
-                      </div>
-
-                      <TimePicker
-                        style={{ borderRadius: 5 }}
-                        placeholder="Chọn giờ"
-                      />
+                  </div>
+                </td>
+                <td className="title-modal">
+                  <p className="title-16px">Ngày hết hạn</p>
+                  <div style={{ display: "flex" }}>
+                    <div style={{ paddingRight: 10 }}>
+                      <Form.Item name="dateend">
+                        <DatePicker
+                          style={{ borderRadius: 5 }}
+                          placeholder="Chọn ngày"
+                          format={dateFormat}
+                          showTime
+                          showToday={false}
+                        />
+                      </Form.Item>
                     </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div>
+            <p className="title-16px">Giá vé áp dụng</p>
             <div>
-              <p className="title-16px">Giá vé áp dụng</p>
-              <div>
-                <Checkbox onChange={onChange}>
+              <Checkbox onChange={showInput1}>
+                <span style={{ display: "flex", alignItems:"center" }}>
                   Vé lẻ (vnđ/vé) với giá{" "}
-                  <Form.Item name="price">
+                  <Form.Item style={{padding:"0 5px 0 5px"}} name="price">
                     <Input
+                      type="number"
                       placeholder="Giá vé"
                       style={{ minWidth: 80, maxWidth: 80, borderRadius: 5 }}
                     />
                   </Form.Item>{" "}
                   / vé
-                </Checkbox>
-              </div>
-              <div style={{ paddingTop: 10 }}>
-                <Checkbox onChange={onChange}>
-                  Combo vé với giá{" "}
-                  <Input
-                    placeholder="Giá vé"
-                    style={{ minWidth: 100, maxWidth: 100, borderRadius: 5 }}
-                    disabled
-                  />{" "}
-                  /{" "}
-                  <Input
-                    placeholder="Số vé"
-                    style={{ minWidth: 80, maxWidth: 80, borderRadius: 5 }}
-                    disabled
-                  />{" "}
-                  vé
-                </Checkbox>
-              </div>
+                </span>
+              </Checkbox>
             </div>
             <div style={{ paddingTop: 10 }}>
-              <p className="title-16px">Tình trạng</p>
-              <div>
-                <Form.Item name="status">
-                  <Cascader
-                    style={{ width: 300 }}
-                    options={options}
-                    onChange={onChangeTinhTrang}
-                    placeholder="Chọn tình trạng"
-                  />
-                </Form.Item>
-              </div>
+              <Checkbox>
+                Combo vé với giá{" "}
+                <Input
+                  placeholder="Giá vé"
+                  style={{ minWidth: 100, maxWidth: 100, borderRadius: 5 }}
+                  disabled
+                />{" "}
+                /{" "}
+                <Input
+                  placeholder="Số vé"
+                  style={{ minWidth: 80, maxWidth: 80, borderRadius: 5 }}
+                  disabled
+                />{" "}
+                vé
+              </Checkbox>
             </div>
-            <Button loading={isLoading} type="primary">
-              OK
-            </Button>
-          </Form>
-        </Formik>
+          </div>
+          <div style={{ paddingTop: 10 }}>
+            <p className="title-16px">Tình trạng</p>
+            <div>
+              <Form.Item name="status">
+                <Select style={{ width: 300 }} placeholder="Chọn tình trạng">
+                  <Option value="Tắt">Tắt</Option>
+                  <Option value="Đang áp dụng">Đang áp dụng</Option>
+                </Select>
+              </Form.Item>
+            </div>
+          </div>
+        </Form>
       </Modal>
     </div>
   );

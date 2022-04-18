@@ -10,6 +10,11 @@
     align-items: center;
     display: flex;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
   
   .site-layout-sub-header-background {
     background: #F9F6F4;
@@ -310,6 +315,9 @@ opacity: 0.8;
     font-weight: 500 !important;
     font-size: 15px !important;
     border-color: rgb(255, 153, 60) !important;
+}
+.ant-form-item{
+  margin-bottom: 0px !important;
 }
 
 .setting__table {
